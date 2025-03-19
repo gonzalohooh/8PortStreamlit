@@ -14,8 +14,11 @@ def authenticate():
         st.subheader("Login")
         username = st.text_input("Username")
         password = st.text_input("Password", type="password")
+        stored_username = os.getenv("STREAMLIT_USERNAME", "admin")
+        stored_password = os.getenv("STREAMLIT_PASSWORD", "password")
+        
         if st.button("Login"):
-            if username == "admin" and password == "password":  # Change these for real authentication
+            if username == stored_username and password == stored_password:
                 st.session_state.authenticated = True
                 st.success("Authentication successful!")
                 st.rerun()
